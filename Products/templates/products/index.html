@@ -1,0 +1,29 @@
+{% extends 'products/base.html' %}
+
+{% block content%}
+{% comment %} <h1>{{title}}</h1> {% endcomment %}
+
+<ul class="list-articles">
+{% if posts %}
+
+
+    {% for p in posts %}
+
+            {% if p.image %}
+            <p><img class="img-article-left thumb" src="{{ p.image.url }}"></p>
+            {% endif %}
+
+
+            <h2>{{p.name}}</h2>
+            <h3>{{p.price}} грн</h3>
+            <p>{{p.describe|linebreaks|truncatewords:24}}</p>
+            <div class="clear"></div>
+            <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Розгорнути</a></p>
+            <br>
+            </li>
+    {% endfor %}
+{% else %}
+            <h2> Чекаемо доставку нового товару для Вас... </h2>
+{% endif %}
+</ul>
+{% endblock content%}
